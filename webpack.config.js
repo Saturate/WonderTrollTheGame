@@ -9,7 +9,7 @@ module.exports = {
     entry: './src/index.js',
 
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
         filename: 'project.bundle.js'
     },
@@ -30,8 +30,8 @@ module.exports = {
 
     plugins: [
         new CopyWebpackPlugin([ 
-            { from: 'src/assets/**', to: 'dist/assets' },
-            { from: 'src/index.html', to: 'dist/index.html' }
+            { from: 'src/assets/', to: 'assets/' },
+            { from: './src/index.html', to: 'index.html' }
         ]),
         new webpack.DefinePlugin({
             'CANVAS_RENDERER': JSON.stringify(true),
