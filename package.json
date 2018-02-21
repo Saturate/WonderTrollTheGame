@@ -1,0 +1,21 @@
+{
+  "name": "wondertroll",
+  "version": "1.0.0",
+  "description": "Play a troll on the wonderstream and avoid the mods!",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Allan Kimmer Jensen",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": "^2.11.0",
+    "webpack": "^3.4.1",
+    "raw-loader": "^0.5.1"
+  },
+  "dependencies": {
+    "phaser": "^3.1.0"
+  }
+}
