@@ -1,6 +1,7 @@
 'use strict';
 
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path');
 
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, 'build'),
-        publicPath: '/build/',
+        publicPath: '/dist/',
         filename: 'project.bundle.js'
     },
 
@@ -28,6 +29,10 @@ module.exports = {
     },
 
     plugins: [
+        new CopyWebpackPlugin([ 
+            { from: 'src/assets/**', to: 'dist/assets' },
+            { from: 'src/index.html', to: 'dist/index.html' }
+        ]),
         new webpack.DefinePlugin({
             'CANVAS_RENDERER': JSON.stringify(true),
             'WEBGL_RENDERER': JSON.stringify(true)
