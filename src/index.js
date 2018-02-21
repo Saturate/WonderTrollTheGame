@@ -3,6 +3,10 @@ import 'phaser';
 const GAME_WIDTH = document.body.clientWidth;
 const GAME_HEIGHT = window.innerHeight;
 
+const MOD_IMAGES = [
+    '/assets/mods/NoSoulGinger.png '
+]
+
 var config = {
     type: Phaser.AUTO,
     parent: 'wondertroll',
@@ -35,7 +39,8 @@ var config = {
             bullets: null,
             lastFired: 0,
             text: null,
-            createBulletEmitter: createBulletEmitter
+            createBulletEmitter: createBulletEmitter,
+            greateModerator: greateModerator
         }
     }
 };
@@ -44,6 +49,8 @@ var game = new Phaser.Game(config);
 
 function preload () {
     this.load.image('logo', '/assets/logo.jpg');
+    this.load.image('mod-1', MOD_IMAGES[0]);
+
     this.load.spritesheet('ship', '/assets/troll-ship3.png', { frameWidth: 28, frameHeight: 21 });
 }
 
@@ -53,8 +60,7 @@ function create () {
         Extends: Phaser.GameObjects.Image,
         initialize:
 
-        function Bullet (scene)
-        {
+        function Bullet (scene) {
             Phaser.GameObjects.Image.call(this, scene, 0, 0, 'bullet');
 
             this.speed = 0;
@@ -74,7 +80,7 @@ function create () {
             this.y -= this.speed * delta;
             this.born += delta;
 
-            if (this.born > 2000)
+            if (this.born > 6000)
             {
                 this.setActive(false);
                 this.setVisible(false);
@@ -124,11 +130,10 @@ function update (time, delta) {
         bullet.setActive(true);
         bullet.setVisible(true);
 
-        if (bullet)
-        {
+        if (bullet) {
             bullet.fire(this.player);
 
-            this.lastFired = time + 500;
+            this.lastFired = time + 400;
         }
     }
 
@@ -146,6 +151,10 @@ function update (time, delta) {
 
     this.text.setText('Horizontal velocity: ' + Math.floor(this.player.vel.x));
 
+    if(Math.random() > 0.97) {
+        this.greateModerator()
+    }
+
 }
 
 function createBulletEmitter ()
@@ -162,6 +171,23 @@ function createBulletEmitter ()
 }
 
 
-function greateModerators () {
+function greateModerator () {
+    //  Create some random aliens moving slowly around
+
+    var x = Phaser.Math.Between(100, 3100);
+    var y = -50;
+
+    var face = this.impact.add.sprite(x, y, 'mod-1');
+
+    face.setBodyScale(1);
+    //face.setVelocity(Phaser.Math.Between(20, 60), Phaser.Math.Between(20, 60));
+   
+    if (this.born > 6000)
+    {
+        this.setActive(false);
+        this.setVisible(false);
+    }
+    
+    //face.vel.x *= -0.1;
 
 }
