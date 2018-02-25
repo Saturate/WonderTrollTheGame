@@ -84,7 +84,7 @@ class GameScene extends Phaser.Scene {
 
         //  Create a floor using setBounds
         //  x, y, width, height, left, right, top, bottom (true = our floor)
-        this.impact.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT, false, false, false, true);
+        //this.impact.world.setBounds(0, 0, GAME_WIDTH, GAME_HEIGHT, false, false, false, true);
         //this.impact.world.setAvsB([ this.player, this.bullets ]);
 
 
